@@ -1,4 +1,4 @@
-package tme1;
+package tme2b;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -89,13 +89,13 @@ public class MatriceEntiere {
 			throw new TaillesNonConcordantesException();
 		}
 		
-		int[][] res = new int[matrice[0].length][m.matrice.length];
+		int[][] res = new int[matrice.length][m.matrice[0].length];
 
 		for(int x = 0; x < res.length; x++) {
 			for(int y = 0; y < res[0].length; y++) {
 				
 				int stock = 0;
-				for(int a = 0; a < res.length; a++) {
+				for(int a = 0; a < matrice[0].length; a++) {
 					stock += (matrice[x][a] * m.matrice[a][y]);
 				}
 				
@@ -120,5 +120,27 @@ public class MatriceEntiere {
 		return res;
 	}
 	
+	
+	public int getNbLignes() {
+		return matrice.length;
+	}
+	
+	public int getNbColonnes() {
+		return matrice[0].length;
+	}
+	
+	public static int produitLigneColonne(MatriceEntiere m1, int i, MatriceEntiere m2, int j) throws TaillesNonConcordantesException{
+		if (m2.getNbLignes() != m1.getNbColonnes()) {
+			throw new TaillesNonConcordantesException();
+		}
+		
+
+		int stock = 0;
+		for(int a = 0; a < m1.matrice[0].length; a++) {
+			stock += (m1.matrice[i][a] * m2.matrice[a][j]);
+		}
+		
+		return stock;
+	}
 	
 }
